@@ -1,0 +1,409 @@
+//# Front-end Style Guide
+
+// ## Layout
+
+// The designs were created to the following widths:
+
+// - Mobile: 375px
+// - Desktop: 1440px
+
+// ## Colors
+
+// ### Primary
+
+// - Soft orange: hsl(35, 77%, 62%)
+// - Soft red: hsl(5, 85%, 63%)
+
+// ### Neutral
+
+// Off-white: hsl(36, 100%, 99%)
+// Grayish blue: hsl(233, 8%, 79%)
+// Dark grayish blue: hsl(236, 13%, 42%)
+// Very dark blue: hsl(240, 100%, 5%)
+
+// ## Typography
+
+// ### Body Copy
+
+// - Font size (paragraph): 15px
+
+// ### Font
+
+// - Family: [Inter](https://fonts.google.com/specimen/Inter)
+// - Weights: 400, 700, 800
+
+// colors
+
+$softorange: hsl(35, 77%, 62%);
+$softred: hsl(5, 85%, 63%);
+$neutral99: hsl(36, 100%, 99%);
+$neutral80: hsl(233, 8%, 79%);
+$neutral40: hsl(236, 13%, 42%);
+$neutral5: hsl(240, 100%, 5%);
+
+*::after,
+*::before,
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 15px;
+}
+
+body{
+    background: $neutral99;
+    max-width: 1110 + 2 * 30px;
+    padding-inline: 2rem;
+    margin: 0 auto;
+
+    font-family: 'Inter', sans-serif;
+
+}
+
+h1{
+    color:$softorange;
+}
+
+.dark{
+    color:$neutral5;
+}
+
+h2:not(.dark){
+    color:$neutral99;
+    
+}
+
+p, li{
+    color:$neutral40;
+}
+
+p.large{
+    color: $neutral80;
+}
+
+a,
+button{
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+}
+
+%redhover{
+    color:$softred;
+}
+
+%orangehover{
+    color:$softorange;
+    
+}
+
+%buttonhover {
+    background: $neutral5;
+    
+}
+
+%transitionbutton{
+    transition: background 300ms linear;
+}
+
+%transitionlink{
+    transition: color 300ms linear;
+}
+
+header{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 6rem 3.5rem;
+
+
+    button{
+        display: none;
+    }
+
+    ul{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        justify-items: center;
+        gap: 2.5rem;
+
+        li{
+            list-style: none;
+            font-size: 1.1rem;
+            @extend %transitionlink;
+            &:hover{
+                @extend %redhover;
+            }
+        }
+    }  
+}
+
+main{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+    row-gap: 4.75rem;
+
+    grid-template-areas: 
+                    "c c n"
+                    "c c n"
+                    "p p p";
+
+    .cover-new{
+        grid-area: c;
+        display: grid;
+        gap: 2rem;
+        align-items: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas:
+                    "img img"
+                    "title text"
+                    "title button";
+
+        img{
+            grid-area:img;
+            width: 100%;
+            height: 100%;
+        }            
+        
+        img.desktop-only{
+            object-fit: cover;
+        }
+        img.mobile-only{
+            display: none;
+        }
+        .new-title{
+            grid-area: title;
+            font-size: 3.5rem;
+            line-height: 3.75rem;
+            font-weight: 800;
+            align-self: center;
+            
+        }
+        p{
+            grid-area: text;
+            line-height: 1.7rem;
+            align-self: center;
+        }
+        button{
+            grid-area: button;
+            width: 180px;
+            height: 50px;
+            align-self: end;
+            background: $softred;
+            color: $neutral99;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            border: none;
+            @extend %transitionbutton;
+
+            &:hover{
+                @extend %buttonhover;
+            }
+        }
+    } 
+
+    .new{
+        grid-area: n;
+        background: $neutral5;
+        padding-inline: 1.75rem;
+        display: grid;
+        grid-template-rows: auto 1fr 1fr 1fr;
+        justify-content: space-between;
+
+        h1{
+            font-size: 2.5rem; 
+            margin-top: 1.5rem;
+        }
+
+        a:nth-of-type(2){
+            border-block: 1px solid $neutral40; 
+        }
+
+        div{
+            padding-block: 2rem;
+
+            &:hover > h2{
+                @extend %orangehover;
+            }
+
+
+            h2{
+                font-size: 1.25rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                @extend %transitionlink;
+            }
+
+            p{
+                color: $neutral80;
+            }
+        }  
+    }
+
+    .popular-new{
+        grid-area: p;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 2rem;
+
+
+        .pop-new{
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            grid-template-rows: repeat(3, auto);
+            column-gap:1.5rem;
+            padding: 0;
+            height: 100%;
+
+            &:hover > h2{
+                @extend %redhover;
+            }
+            
+            .pop-pic{
+                grid-column: 1 / 2;
+                grid-row: 1 / -1;
+                width: 100%;
+                height: 100%;
+                
+                object-fit: cover;
+            }
+            .large{
+                grid-row: 1 / 2;
+                font-size: 2rem;
+                font-weight: 700;
+            }
+            h2{
+                grid-row: 2 / 3;
+                font-size: 1.25rem;
+                font-weight: 700;
+                @extend %transitionlink;
+            }
+            p:not(.large){
+                grid-row: 3 / -1;
+                font-size: 1rem;
+            }
+        }
+    }
+} 
+
+footer {
+    padding-block: 2rem 1rem;
+
+
+}
+
+@media only screen and (max-width: 800px){
+    body{
+        padding-inline: 0.8rem;
+        overflow-x: hidden;
+    }
+
+    header{   
+        position: relative; 
+        padding-block: 2rem 2rem;
+    
+        button{
+            display:block;
+            z-index: 3;
+            position: absolute;
+            right: 0;
+            background: transparent;
+            border: none;  
+            
+            img{
+                display:none;
+            }
+
+
+            &[aria-expanded='false'] .open-button{
+                display: block;
+            }
+
+            &[aria-expanded='true'] .close-button{
+                display: block;
+            }
+
+        }
+    
+        ul{
+           
+            flex-direction: column;
+            justify-content: start;
+            padding: 10rem 50%;
+            gap: 1.5rem;
+
+            position: absolute;
+            background: linear-gradient(to right, rgba(black, 50%) 0%, rgba(black, 50%) 35%, $neutral99 35%);
+            inset: 0 -1rem 0 -1rem;
+            height: 100vh;
+            transform: translateX(100%);
+            display: none;
+            
+            z-index: 2;
+
+            transition: display 0ms,
+                        transform 300ms linear;
+
+            li{
+                color: $neutral5;
+            }
+        }  
+
+        ul[data-visible='true']{
+            transform: translateX(0);
+            display: flex;
+        }
+    }
+
+    main{
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        grid-template-areas: 
+        "c"
+        "n"
+        "p";
+
+        .cover-new{
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(4,auto);
+            gap: 1rem;
+            grid-template-areas:
+                        "img"
+                        "title"
+                        "text"
+                        "button";    
+            
+            img.desktop-only{
+                display: none;
+                
+            }
+            img.mobile-only{
+                display: block;
+                object-fit: cover;
+            }
+
+            .new-title{
+                font-size: 3rem;
+            }
+        
+        }
+        .popular-new{
+            grid-area: p;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+    }
+}
+

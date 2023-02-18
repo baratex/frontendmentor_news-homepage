@@ -1,0 +1,283 @@
+*::after,
+*::before,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 15px;
+}
+
+body {
+  background: hsl(36, 100%, 99%);
+  max-width: 1170px;
+  padding-inline: 2rem;
+  margin: 0 auto;
+  font-family: "Inter", sans-serif;
+}
+
+h1 {
+  color: hsl(35, 77%, 62%);
+}
+
+.dark {
+  color: hsl(240, 100%, 5%);
+}
+
+h2:not(.dark) {
+  color: hsl(36, 100%, 99%);
+}
+
+p, li {
+  color: hsl(236, 13%, 42%);
+}
+
+p.large {
+  color: hsl(233, 8%, 79%);
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+main .popular-new .pop-new:hover > h2, header ul li:hover {
+  color: hsl(5, 85%, 63%);
+}
+
+main .new div:hover > h2 {
+  color: hsl(35, 77%, 62%);
+}
+
+main .cover-new button:hover {
+  background: hsl(240, 100%, 5%);
+}
+
+main .cover-new button {
+  transition: background 300ms linear;
+}
+
+main .popular-new .pop-new h2, main .new div h2, header ul li {
+  transition: color 300ms linear;
+}
+
+header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 6rem 3.5rem;
+}
+header button {
+  display: none;
+}
+header ul {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  justify-items: center;
+  gap: 2.5rem;
+}
+header ul li {
+  list-style: none;
+  font-size: 1.1rem;
+}
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 2rem;
+  row-gap: 4.75rem;
+  grid-template-areas: "c c n" "c c n" "p p p";
+}
+main .cover-new {
+  grid-area: c;
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "img img" "title text" "title button";
+}
+main .cover-new img {
+  grid-area: img;
+  width: 100%;
+  height: 100%;
+}
+main .cover-new img.desktop-only {
+  object-fit: cover;
+}
+main .cover-new img.mobile-only {
+  display: none;
+}
+main .cover-new .new-title {
+  grid-area: title;
+  font-size: 3.5rem;
+  line-height: 3.75rem;
+  font-weight: 800;
+  align-self: center;
+}
+main .cover-new p {
+  grid-area: text;
+  line-height: 1.7rem;
+  align-self: center;
+}
+main .cover-new button {
+  grid-area: button;
+  width: 180px;
+  height: 50px;
+  align-self: end;
+  background: hsl(5, 85%, 63%);
+  color: hsl(36, 100%, 99%);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.9rem;
+  border: none;
+}
+main .new {
+  grid-area: n;
+  background: hsl(240, 100%, 5%);
+  padding-inline: 1.75rem;
+  display: grid;
+  grid-template-rows: auto 1fr 1fr 1fr;
+  justify-content: space-between;
+}
+main .new h1 {
+  font-size: 2.5rem;
+  margin-top: 1.5rem;
+}
+main .new a:nth-of-type(2) {
+  border-block: 1px solid hsl(236, 13%, 42%);
+}
+main .new div {
+  padding-block: 2rem;
+}
+main .new div h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+main .new div p {
+  color: hsl(233, 8%, 79%);
+}
+main .popular-new {
+  grid-area: p;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+main .popular-new .pop-new {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: repeat(3, auto);
+  column-gap: 1.5rem;
+  padding: 0;
+  height: 100%;
+}
+main .popular-new .pop-new .pop-pic {
+  grid-column: 1/2;
+  grid-row: 1/-1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+main .popular-new .pop-new .large {
+  grid-row: 1/2;
+  font-size: 2rem;
+  font-weight: 700;
+}
+main .popular-new .pop-new h2 {
+  grid-row: 2/3;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+main .popular-new .pop-new p:not(.large) {
+  grid-row: 3/-1;
+  font-size: 1rem;
+}
+
+footer {
+  padding-block: 2rem 1rem;
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+    padding-inline: 0.8rem;
+    overflow-x: hidden;
+  }
+  header {
+    position: relative;
+    padding-block: 2rem 2rem;
+  }
+  header button {
+    display: block;
+    z-index: 3;
+    position: absolute;
+    right: 0;
+    background: transparent;
+    border: none;
+  }
+  header button img {
+    display: none;
+  }
+  header button[aria-expanded=false] .open-button {
+    display: block;
+  }
+  header button[aria-expanded=true] .close-button {
+    display: block;
+  }
+  header ul {
+    flex-direction: column;
+    justify-content: start;
+    padding: 10rem 50%;
+    gap: 1.5rem;
+    position: absolute;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 35%, hsl(36, 100%, 99%) 35%);
+    inset: 0 -1rem 0 -1rem;
+    height: 100vh;
+    transform: translateX(100%);
+    display: none;
+    z-index: 2;
+    transition: display 0ms, transform 300ms linear;
+  }
+  header ul li {
+    color: hsl(240, 100%, 5%);
+  }
+  header ul[data-visible=true] {
+    transform: translateX(0);
+    display: flex;
+  }
+  main {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    grid-template-areas: "c" "n" "p";
+  }
+  main .cover-new {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 1rem;
+    grid-template-areas: "img" "title" "text" "button";
+  }
+  main .cover-new img.desktop-only {
+    display: none;
+  }
+  main .cover-new img.mobile-only {
+    display: block;
+    object-fit: cover;
+  }
+  main .cover-new .new-title {
+    font-size: 3rem;
+  }
+  main .popular-new {
+    grid-area: p;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
