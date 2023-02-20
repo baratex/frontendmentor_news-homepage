@@ -12,9 +12,7 @@ html {
 
 body {
   background: hsl(36, 100%, 99%);
-  max-width: 1170px;
-  padding-inline: 2rem;
-  margin: 0 auto;
+  min-height: 100vh;
   font-family: "Inter", sans-serif;
 }
 
@@ -30,7 +28,7 @@ h2:not(.dark) {
   color: hsl(36, 100%, 99%);
 }
 
-p, li {
+p, li > a {
   color: hsl(236, 13%, 42%);
 }
 
@@ -47,7 +45,7 @@ a {
   text-decoration: none;
 }
 
-main .popular-new .pop-new:hover > h2, header ul li:hover {
+main .popular-new .pop-new:hover > h2, .header-container ul li:hover a {
   color: hsl(5, 85%, 63%);
 }
 
@@ -63,32 +61,46 @@ main .cover-new button {
   transition: background 300ms linear;
 }
 
-main .popular-new .pop-new h2, main .new div h2, header ul li {
+main .popular-new .pop-new h2, main .new div h2, .header-container ul li a {
   transition: color 300ms linear;
 }
 
 header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1170px;
+  padding-inline: 2rem;
+  padding-block: 6rem 3.5rem;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  padding-block: 6rem 3.5rem;
+  margin: 0 auto;
 }
-header button {
+.header-container button {
   display: none;
 }
-header ul {
+.header-container ul {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   justify-items: center;
   gap: 2.5rem;
 }
-header ul li {
+.header-container ul li {
   list-style: none;
   font-size: 1.1rem;
 }
 main {
+  max-width: 1170px;
+  padding-inline: 2rem;
+  padding-top: 12.2rem;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 2rem;
@@ -212,27 +224,29 @@ footer {
     overflow-x: hidden;
   }
   header {
-    position: relative;
+    width: calc(100% - 1.6rem);
+  }
+  .header-container {
     padding-block: 2rem 2rem;
   }
-  header button {
+  .header-container button {
     display: block;
     z-index: 3;
     position: absolute;
-    right: 0;
+    right: 2rem;
     background: transparent;
     border: none;
   }
-  header button img {
+  .header-container button img {
     display: none;
   }
-  header button[aria-expanded=false] .open-button {
+  .header-container button[aria-expanded=false] .open-button {
     display: block;
   }
-  header button[aria-expanded=true] .close-button {
+  .header-container button[aria-expanded=true] .close-button {
     display: block;
   }
-  header ul {
+  .header-container ul {
     flex-direction: column;
     justify-content: start;
     padding: 10rem 50%;
@@ -246,14 +260,15 @@ footer {
     z-index: 2;
     transition: display 0ms, transform 300ms linear;
   }
-  header ul li {
+  .header-container ul li {
     color: hsl(240, 100%, 5%);
   }
-  header ul[data-visible=true] {
+  .header-container ul[data-visible=true] {
     transform: translateX(0);
     display: flex;
   }
   main {
+    padding-top: 6.6rem;
     grid-template-columns: 1fr;
     gap: 4rem;
     grid-template-areas: "c" "n" "p";
