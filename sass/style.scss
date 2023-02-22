@@ -114,6 +114,7 @@ a{
 
 header{
     position: fixed;
+    background: $neutral99;
     top: 0;
     z-index: 1;
     width: 100%;
@@ -368,8 +369,7 @@ footer {
             background: linear-gradient(to right, rgba(black, 50%) 0%, rgba(black, 50%) 35%, $neutral99 35%);
             inset: 0 -1rem 0 -1rem;
             height: 100vh;
-            transform: translateX(100%);
-            display: none;
+            transform: translateY(-100%);
             
             z-index: 2;
 
@@ -382,8 +382,7 @@ footer {
         }  
 
         ul[data-visible='true']{
-            transform: translateX(0);
-            display: flex;
+            transform: translateY(0);
         }
     }
 
